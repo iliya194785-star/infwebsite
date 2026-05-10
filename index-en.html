@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artists of Eternity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #hero {
+            min-height: 100vh;
+            padding-top: var(--offset);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%),
+                linear-gradient(180deg, rgba(13,13,15,0.3) 0%, rgba(13,13,15,0.7) 100%);
+        }
+        .hero-inner {
+            position: relative; z-index: 2;
+            text-align: center;
+            padding: 0 24px;
+            max-width: 860px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.9s ease 0.15s, transform 0.9s ease 0.15s;
+        }
+        .hero-inner.visible { opacity: 1; transform: translateY(0); }
+        .hero-eyebrow {
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .hero-eyebrow::before, .hero-eyebrow::after {
+            content: '';
+            width: 40px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold));
+        }
+        .hero-eyebrow::after { transform: scaleX(-1); }
+        .hero-h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(52px, 10vw, 110px);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            margin-bottom: 28px;
+        }
+        .hero-h1 em { font-style: italic; color: var(--gold); display: block; }
+        .hero-sub {
+            font-size: clamp(15px, 2vw, 18px);
+            color: var(--fog);
+            max-width: 480px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: var(--ink);
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 18px 44px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 28px rgba(201,168,76,0.3);
+        }
+        .hero-cta:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 14px 36px rgba(201,168,76,0.4); }
+        .hero-scroll {
+            position: absolute; bottom: 36px; left: 50%;
+            transform: translateX(-50%);
+            color: rgba(201,168,76,0.5);
+            font-size: 20px;
+            animation: bob 2s ease infinite;
+        }
+        @keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+        .about-band {
+            padding: 80px 24px;
+            text-align: center;
+            border-top: 1px solid rgba(201,168,76,0.08);
+            border-bottom: 1px solid rgba(201,168,76,0.08);
+        }
+        .about-band .label { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+        .about-band h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 600; margin-bottom: 20px; }
+        .about-band p { font-size: 16px; color: var(--fog); max-width: 540px; margin: 0 auto; line-height: 1.8; }
+        #artists { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
+        .section-head { text-align: center; margin-bottom: 64px; }
+        .section-head .label { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+        .section-head h2 { font-size: clamp(32px, 5vw, 52px); font-weight: 600; }
+        .artists-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+        .artist-card { position: relative; display: block; border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; aspect-ratio: 3/4; background: var(--ink-3); transition: transform 0.35s ease; border: 1px solid rgba(201,168,76,0.08); }
+        .artist-card:hover { transform: translateY(-10px); }
+        .artist-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; filter: grayscale(20%); }
+        .artist-card:hover img { transform: scale(1.06); filter: grayscale(0%); }
+        .artist-card .ac-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,13,15,0.95) 0%, rgba(13,13,15,0.3) 50%, transparent 100%); }
+        .artist-card .ac-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; }
+        .ac-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .ac-tag::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+        .artist-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; line-height: 1.2; color: var(--paper); }
+        .ac-arrow { position: absolute; top: 24px; right: 24px; width: 36px; height: 36px; border: 1px solid rgba(201,168,76,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 13px; transform: translateX(-4px); opacity: 0; transition: opacity 0.3s, transform 0.3s, background 0.3s; }
+        .artist-card:hover .ac-arrow { opacity: 1; transform: translateX(0); background: rgba(201,168,76,0.15); }
+        .quotes-band { padding: 80px 24px; background: var(--ink-2); border-top: 1px solid rgba(201,168,76,0.08); border-bottom: 1px solid rgba(201,168,76,0.08); }
+        .quotes-inner { max-width: 900px; margin: 0 auto; }
+        .quotes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; }
+        .q-card { background: linear-gradient(135deg, rgba(201,168,76,0.05), transparent); border: 1px solid rgba(201,168,76,0.15); border-radius: var(--radius); padding: 32px; }
+        .q-card p:first-child { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; line-height: 1.6; color: var(--paper); margin-bottom: 20px; }
+        .q-card p:last-child { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <div id="banner">
+        <span><i class="fas fa-flag" style="font-size:10px;"></i> <strong>Since February 24, 2022</strong> — Ukraine fights for freedom!</span>
+        <a href="https://savelife.in.ua/en/donate-en" target="_blank" class="donate-badge">
+            <i class="fas fa-heart"></i> Support the Armed Forces
+        </a>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="index-en.html" class="nav-logo">ARTISTS<em>.OF ETERNITY</em></a>
+            <div class="nav-links">
+                <a href="classic-en.html">Beethoven</a>
+                <a href="sludes-en.html">Van Gogh</a>
+                <a href="poema-en.html">Shevchenko</a>
+                <a href="architect-en.html">Michelangelo</a>
+            </div>
+            <div class="lang-switcher">
+                <a href="index.html">УКР</a>
+                <span class="lang-sep">|</span>
+                <a href="index-en.html" class="active">ENG</a>
+            </div>
+            <button id="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobile-menu">
+            <a href="classic-en.html">Beethoven</a>
+            <a href="sludes-en.html">Van Gogh</a>
+            <a href="poema-en.html">Shevchenko</a>
+            <a href="architect-en.html">Michelangelo</a>
+            <div class="lang-row">
+                <a href="index.html">УКР</a>
+                <a href="index-en.html" class="active">ENG</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-inner" id="hero-inner">
+            <div class="hero-eyebrow">Educational Project</div>
+            <h1 class="hero-h1">
+                Art that
+                <em>never dies</em>
+            </h1>
+            <p class="hero-sub">Stories of geniuses who overcame pain, deafness, serfdom, and fate itself</p>
+            <a href="#artists" class="hero-cta">
+                Discover the Artists <i class="fas fa-arrow-down" style="font-size:11px;"></i>
+            </a>
+        </div>
+        <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+    <div class="about-band fade-up">
+        <div class="label">About the Project</div>
+        <h2>Artists of Eternity</h2>
+        <p>An educational website about remarkable individuals who changed the world through art. Four geniuses, four destinies — one immortality.</p>
+    </div>
+
+    <section id="artists">
+        <div class="section-head fade-up">
+            <div class="label">Selected Figures</div>
+            <h2>Legends That Inspire</h2>
+        </div>
+        <div class="artists-grid">
+            <a href="classic-en.html" class="artist-card fade-up">
+                <img src="https://i.postimg.cc/yd4sgW0F/6389.jpg" alt="Beethoven" loading="lazy">
+                <div class="ac-overlay"></div>
+                <div class="ac-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="ac-info">
+                    <div class="ac-tag">Composer</div>
+                    <h3>Ludwig van Beethoven</h3>
+                </div>
+            </a>
+            <a href="sludes-en.html" class="artist-card fade-up">
+                <img src="https://i.postimg.cc/fTGwS2Hm/Vincent-van-Gogh-Self-Portrait-Google-Art-Project.jpg" alt="Van Gogh" loading="lazy">
+                <div class="ac-overlay"></div>
+                <div class="ac-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="ac-info">
+                    <div class="ac-tag">Painter</div>
+                    <h3>Vincent van Gogh</h3>
+                </div>
+            </a>
+            <a href="poema-en.html" class="artist-card fade-up">
+                <img src="https://i.postimg.cc/m2Mkmfgg/Taras-Shevchenko-selfportrait-oil-1840-2.jpg" alt="Shevchenko" loading="lazy">
+                <div class="ac-overlay"></div>
+                <div class="ac-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="ac-info">
+                    <div class="ac-tag">Poet · Painter</div>
+                    <h3>Taras Shevchenko</h3>
+                </div>
+            </a>
+            <a href="architect-en.html" class="artist-card fade-up">
+                <img src="https://i.postimg.cc/CKw4FsQZ/photo-2026-05-09-18-25-53.jpg" alt="Michelangelo" loading="lazy">
+                <div class="ac-overlay"></div>
+                <div class="ac-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="ac-info">
+                    <div class="ac-tag">Sculptor · Architect</div>
+                    <h3>Michelangelo</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div class="quotes-band">
+        <div class="quotes-inner">
+            <div class="section-head fade-up">
+                <div class="label">In Their Words</div>
+                <h2>Words That Inspire</h2>
+            </div>
+            <div class="quotes-grid">
+                <div class="q-card fade-up">
+                    <p>"I will seize fate by the throat!"</p>
+                    <p>— Ludwig van Beethoven</p>
+                </div>
+                <div class="q-card fade-up">
+                    <p>"Fight — and you shall prevail! God is on your side!"</p>
+                    <p>— Taras Shevchenko</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://savelife.in.ua/en/donate-en" target="_blank" class="donate-fab">
+        <i class="fas fa-heart"></i> Support Ukraine
+    </a>
+
+    <footer>
+        <p>&copy; 2026 <span>Artists of Eternity</span> &nbsp;·&nbsp; Glory to Ukraine! Glory to the Heroes!</p>
+    </footer>
+
+    <script>
+        function adjustLayout() {
+            const banner = document.getElementById('banner');
+            const navbar = document.getElementById('navbar');
+            if (!banner || !navbar) return;
+            const bh = banner.offsetHeight;
+            navbar.style.top = bh + 'px';
+            document.documentElement.style.setProperty('--banner-h', bh + 'px');
+        }
+        function initFadeUp() {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustLayout(); initFadeUp();
+            requestAnimationFrame(() => {
+                const h = document.getElementById('hero-inner');
+                if (h) h.classList.add('visible');
+            });
+        });
+        window.addEventListener('resize', adjustLayout);
+        const mb = document.getElementById('mobile-menu-btn');
+        const mm = document.getElementById('mobile-menu');
+        mb.addEventListener('click', () => {
+            const open = mm.style.display === 'flex';
+            mm.style.display = open ? 'none' : 'flex';
+            mb.querySelector('i').className = open ? 'fas fa-bars' : 'fas fa-xmark';
+        });
+    </script>
+</body>
+</html>

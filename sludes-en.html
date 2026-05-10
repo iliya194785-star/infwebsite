@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vincent van Gogh — Artists of Eternity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #main-content { padding-top: var(--offset); padding-bottom: 80px; max-width: 820px; margin: 0 auto; padding-left: 28px; padding-right: 28px; }
+        .page-header { text-align: center; padding: 60px 0 48px; border-bottom: 1px solid rgba(201,168,76,0.1); margin-bottom: 52px; }
+        .page-header .eyebrow { font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .page-header .eyebrow::before,.page-header .eyebrow::after{content:'';width:30px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
+        .page-header .eyebrow::after{transform:scaleX(-1);}
+        .page-header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,8vw,80px);font-weight:700;line-height:1;letter-spacing:-0.02em;margin-bottom:14px;}
+        .page-header .subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold);}
+        .back-center{text-align:center;margin-top:72px;}
+        .gallery-section h3{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,38px);font-weight:600;color:var(--gold);text-align:center;margin:72px 0 36px;}
+    </style>
+</head>
+<body>
+
+    <div id="banner">
+        <span><i class="fas fa-flag" style="font-size:10px;"></i> <strong>Since February 24, 2022</strong> — Ukraine fights for freedom!</span>
+        <a href="https://savelife.in.ua/en/donate-en" target="_blank" class="donate-badge"><i class="fas fa-heart"></i> Support Ukraine</a>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="index-en.html" class="nav-logo">ARTISTS<em>.OF ETERNITY</em></a>
+            <div class="nav-links">
+                <a href="classic-en.html">Beethoven</a>
+                <a href="sludes-en.html" class="active">Van Gogh</a>
+                <a href="poema-en.html">Shevchenko</a>
+                <a href="architect-en.html">Michelangelo</a>
+            </div>
+            <div class="lang-switcher">
+                <a href="sludes.html">УКР</a>
+                <span class="lang-sep">|</span>
+                <a href="sludes-en.html" class="active">ENG</a>
+            </div>
+            <button id="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobile-menu">
+            <a href="classic-en.html">Beethoven</a>
+            <a href="sludes-en.html">Van Gogh</a>
+            <a href="poema-en.html">Shevchenko</a>
+            <a href="architect-en.html">Michelangelo</a>
+            <div class="lang-row"><a href="sludes.html">УКР</a><a href="sludes-en.html" class="active">ENG</a></div>
+        </div>
+    </nav>
+
+    <div id="main-content">
+        <div class="page-header">
+            <div class="eyebrow">Painter</div>
+            <h1>Vincent van Gogh</h1>
+            <div class="subtitle">Tormented genius · Master of Post-Impressionism</div>
+        </div>
+
+        <div class="prose">
+            <img src="https://i.postimg.cc/fTGwS2Hm/Vincent-van-Gogh-Self-Portrait-Google-Art-Project.jpg" alt="Vincent van Gogh" class="fade-up">
+
+            <p class="fade-up">Vincent van Gogh was a Dutch painter and one of the most influential figures in the history of Western art. In just over a decade he created more than 2,000 works, including The Starry Night, Sunflowers, and numerous self-portraits.</p>
+
+            <h2 class="fade-up">A Life Full of Struggle</h2>
+            <img src="https://i.postimg.cc/C1mkLyqp/unnamed.jpg" alt="Van Gogh" class="rightimg fade-up">
+            <p class="fade-up">Born on March 30, 1853 in the Netherlands to a pastor's family. He was an introverted, difficult child. He worked as an art dealer, teacher, and preacher. Only at 27 did he commit fully to painting, sustained throughout by his brother Theo's unwavering support.</p>
+            <div class="clearfix"></div>
+
+            <h2 class="fade-up">Paris and Arles</h2>
+            <p class="fade-up">In Paris (1886–1888) he encountered the Impressionists and Post-Impressionists, and his palette became intensely vibrant. In 1888 he moved to Arles, where he created his most celebrated works. He invited Paul Gauguin to join him, but their relationship ended in a violent quarrel and the infamous incident of Van Gogh cutting off his own ear.</p>
+
+            <img src="https://i.postimg.cc/90VbqG5C/Vincent-van-Gogh-Self-portrait-with-bandaged-ear-F529.jpg" alt="Self-portrait with bandaged ear" class="fade-up">
+
+            <h2 class="fade-up">Final Years and Legacy</h2>
+            <p class="fade-up">Van Gogh sold only one painting during his lifetime. Today his works are considered pinnacles of world art, selling for tens of millions of dollars.</p>
+        </div>
+
+        <div class="gallery-section">
+            <h3 class="fade-up">Masterworks of Vincent van Gogh</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-up" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/jd51QtqT/vincent-van-gogh-selfportrait-with-a-straw-hat-portrait-135340-1920x1080.jpg" alt="Автопортрет">
+                    <div class="gi-overlay"></div>
+                    <div class="gi-info"><div class="gi-year">1887</div><div class="gi-title">Self-Portrait with a Straw Hat</div></div>
+                </div>
+                <div class="gallery-item fade-up" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/bNJ5Hpyg/f-CXQ8U.jpg" alt="Автопортрет">
+                    <div class="gi-overlay"></div>
+                    <div class="gi-info"><div class="gi-year">1888</div><div class="gi-title">Fishing Boats at Sea</div></div>
+                </div>
+                <div class="gallery-item fade-up" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/Y28VWhHF/Qh8rz-V.jpg" alt="Пшеничне поле з кипарисами">
+                    <div class="gi-overlay"></div>
+                    <div class="gi-info"><div class="gi-year">1889</div><div class="gi-title">Wheat Field with Cypresses</div></div>
+                </div>
+                <div class="gallery-item fade-up" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/8cy0QnHx/FG4Ag-D.jpg" alt="Зелене пшеничне поле з кипарисом">
+                    <div class="gi-overlay"></div>
+                    <div class="gi-info"><div class="gi-year">1889</div><div class="gi-title">Green Wheat Field with Cypress</div></div>
+                </div>
+                <div class="gallery-item fade-up" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/5yPRdk38/van-gogh-starry-night-night-190226-1920x1080.jpg" alt="Зоряна ніч">
+                    <div class="gi-overlay"></div>
+                    <div class="gi-info"><div class="gi-year">1889</div><div class="gi-title">The Starry Night</div></div>
+                </div>
+                <div class="gallery-item fade-up" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/ZqcPMvjC/Van-willem-vincent-gogh-die-kartoffelesser-03850.jpg" alt="Їдці картоплі">
+                    <div class="gi-overlay"></div>
+                    <div class="gi-info"><div class="gi-year">1885</div><div class="gi-title">The Potato Eaters</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-block fade-up">
+            "I feel the need to paint. That is what gives me the strength to live."
+            <cite>— Vincent van Gogh</cite>
+        </div>
+
+        <div class="prose">
+            <h2 class="fade-up">Death</h2>
+            <p class="fade-up">On July 27, 1890, aged 37, Vincent van Gogh shot himself in the chest. He died on July 29, 1890 in Auvers-sur-Oise. His brother Theo was by his side until the very end.</p>
+            <img src="https://i.postimg.cc/VsxSXBcC/9s843fzq5lmx1lf0b7bc41f93cc7ab4e35-van-Gogh-11.jpg" alt="Graves of Vincent and Theo van Gogh" class="fade-up">
+        </div>
+
+        <div class="back-center fade-up">
+            <a href="index-en.html" class="back-btn"><i class="fas fa-arrow-left"></i> All Artists</a>
+        </div>
+    </div>
+
+    <div id="lightbox">
+        <button id="lb-close" onclick="closeLightbox()">×</button>
+        <img id="lb-img" src="" alt="">
+    </div>
+
+    <a href="https://savelife.in.ua/en/donate-en" target="_blank" class="donate-fab"><i class="fas fa-heart"></i> Support Ukraine</a>
+    <footer><p>&copy; 2026 <span>Artists of Eternity</span> &nbsp;·&nbsp; Glory to Ukraine!</p></footer>
+
+    <script>
+        function adjustLayout(){const b=document.getElementById('banner'),n=document.getElementById('navbar');if(!b||!n)return;const bh=b.offsetHeight;n.style.top=bh+'px';document.documentElement.style.setProperty('--banner-h',bh+'px');}
+        function initFadeUp(){const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));}
+        document.addEventListener('DOMContentLoaded',()=>{adjustLayout();initFadeUp();});
+        window.addEventListener('resize',adjustLayout);
+        const mb=document.getElementById('mobile-menu-btn'),mm=document.getElementById('mobile-menu');
+        mb.addEventListener('click',()=>{const o=mm.style.display==='flex';mm.style.display=o?'none':'flex';mb.querySelector('i').className=o?'fas fa-bars':'fas fa-xmark';});
+        function openLightbox(el){document.getElementById('lb-img').src=el.querySelector('img').src;document.getElementById('lightbox').classList.add('open');}
+        function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+        document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
+    </script>
+</body>
+</html>

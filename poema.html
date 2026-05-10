@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тарас Шевченко — Митці Вічності</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #main-content{padding-top:var(--offset);padding-bottom:80px;max-width:820px;margin:0 auto;padding-left:28px;padding-right:28px;}
+        .page-header{text-align:center;padding:60px 0 48px;border-bottom:1px solid rgba(201,168,76,0.1);margin-bottom:52px;}
+        .page-header .eyebrow{font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:10px;}
+        .page-header .eyebrow::before,.page-header .eyebrow::after{content:'';width:30px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
+        .page-header .eyebrow::after{transform:scaleX(-1);}
+        .page-header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,7vw,72px);font-weight:700;line-height:1;letter-spacing:-0.02em;margin-bottom:14px;}
+        .page-header .subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold);}
+        .back-center{text-align:center;margin-top:72px;}
+        .poem-block{background:linear-gradient(135deg,rgba(201,168,76,0.06),rgba(201,168,76,0.02));border:1px solid rgba(201,168,76,0.2);border-left:3px solid var(--gold);padding:36px 40px;border-radius:var(--radius);margin:48px 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.9;color:var(--paper);text-align:center;}
+        .final-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--paper);text-align:center;padding:40px 0;line-height:1.7;}
+    </style>
+</head>
+<body>
+
+    <div id="banner">
+        <span><i class="fas fa-flag" style="font-size:10px;"></i> <strong>З 24 лютого 2022</strong> — Україна бореться за свободу!</span>
+        <a href="https://savelife.in.ua/donate/" target="_blank" class="donate-badge"><i class="fas fa-heart"></i> Підтримати ЗСУ</a>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">МИТЦІ<em>.ВІЧНОСТІ</em></a>
+            <div class="nav-links">
+                <a href="classic.html">Бетховен</a>
+                <a href="sludes.html">Ван Гог</a>
+                <a href="poema.html" class="active">Шевченко</a>
+                <a href="architect.html">Мікеланджело</a>
+            </div>
+            <div class="lang-switcher">
+                <a href="poema.html" class="active">УКР</a>
+                <span class="lang-sep">|</span>
+                <a href="poema-en.html">ENG</a>
+            </div>
+            <button id="mobile-menu-btn" aria-label="Меню"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobile-menu">
+            <a href="classic.html">Бетховен</a>
+            <a href="sludes.html">Ван Гог</a>
+            <a href="poema.html">Шевченко</a>
+            <a href="architect.html">Мікеланджело</a>
+            <div class="lang-row"><a href="poema.html" class="active">УКР</a><a href="poema-en.html">ENG</a></div>
+        </div>
+    </nav>
+
+    <div id="main-content">
+        <div class="page-header">
+            <div class="eyebrow">Поет · Художник</div>
+            <h1>Тарас Григорович Шевченко</h1>
+            <div class="subtitle">Великий Кобзар · Символ України</div>
+        </div>
+
+        <div class="prose">
+            <img src="https://i.postimg.cc/m2Mkmfgg/Taras-Shevchenko-selfportrait-oil-1840-2.jpg" alt="Тарас Шевченко" class="fade-up">
+
+            <p class="fade-up">Тарас Шевченко — український поет, прозаїк, мислитель, художник, гравер, етнограф і громадський діяч. Його творчість стала основою сучасної української літератури та значною мірою — сучасної української мови.</p>
+
+            <h2 class="fade-up">Дитинство та юність</h2>
+            <img src="https://mala.storinka.org/uploaded/images/Articles/Taras/99.jpg" alt="Тарас Шевченко в молодості" class="rightimg fade-up">
+            <p class="fade-up">Народився 9 березня 1814 року в селі Моринці Київської губернії в родині кріпака. Рано втратив матір, а в 11 років — батька. Змалку зазнав тяжкого кріпацького життя, злиднів і принижень.</p>
+            <p class="fade-up">У 1828 році його взяли до двору поміщика Енгельгардта козачком. Помітивши художній талант хлопця, поміщик віддав його на навчання до маляра. У 1838 році завдяки зусиллям Карла Брюллова та Василя Жуковського Шевченка викупили з кріпацтва за 2500 рублів.</p>
+            <div class="clearfix"></div>
+
+            <h2 class="fade-up">«Кобзар» та творчість</h2>
+            <p class="fade-up">Перша збірка поезій «Кобзар» вийшла у 1840 році і відразу принесла йому широку славу. До неї увійшли поеми «Катерина», «Тополя», «Гайдамаки» та інші твори. Шевченко став одним з найактивніших членів Кирило-Мефодіївського братства.</p>
+        </div>
+
+        <div class="poem-block fade-up">
+            "Борітеся — поборете!<br>
+            Вам Бог помагає!<br>
+            За вас правда, за вас слава<br>
+            І воля святая!"
+        </div>
+
+        <div class="prose">
+            <h2 class="fade-up">Заслання та повернення</h2>
+            <img src="https://knu.ua/img/kobzar.jpg" alt="Автопортрет Шевченка" class="leftimg fade-up">
+            <p class="fade-up">У 1847 році Шевченка заарештували за участь у Кирило-Мефодіївському братстві. Його засудили до заслання рядовим солдатом в Орську фортецю, а згодом — на Мангишлак. Йому заборонили писати і малювати.</p>
+            <p class="fade-up">Після десятирічного заслання (1857) Шевченко повернувся до Петербурга. Останні роки активно працював над новими поезіями, малюнками та гравюрами.</p>
+            <div class="clearfix"></div>
+
+            <h2 class="fade-up">Спадщина</h2>
+            <p class="fade-up">Тарас Шевченко став символом українського національного відродження. Він автор понад 200 літературних творів і більше 150 творів образотворчого мистецтва. Його ім'ям названо тисячі вулиць, шкіл, бібліотек та пам'ятників в Україні та світі.</p>
+        </div>
+
+        <div class="final-quote fade-up">
+            "І мене в сім'ї великій, в сім'ї вольній, новій,<br>
+            не забудьте пом'янути незлим тихим словом."
+        </div>
+
+        <div class="back-center fade-up">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Всі митці</a>
+        </div>
+    </div>
+
+    <a href="https://savelife.in.ua/donate/" target="_blank" class="donate-fab"><i class="fas fa-heart"></i> Підтримати ЗСУ</a>
+    <footer><p>&copy; 2026 <span>Митці Вічності</span> &nbsp;·&nbsp; Слава Україні!</p></footer>
+
+    <script>
+        function adjustLayout(){const b=document.getElementById('banner'),n=document.getElementById('navbar');if(!b||!n)return;const bh=b.offsetHeight;n.style.top=bh+'px';document.documentElement.style.setProperty('--banner-h',bh+'px');}
+        function initFadeUp(){const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));}
+        document.addEventListener('DOMContentLoaded',()=>{adjustLayout();initFadeUp();});
+        window.addEventListener('resize',adjustLayout);
+        const mb=document.getElementById('mobile-menu-btn'),mm=document.getElementById('mobile-menu');
+        mb.addEventListener('click',()=>{const o=mm.style.display==='flex';mm.style.display=o?'none':'flex';mb.querySelector('i').className=o?'fas fa-bars':'fas fa-xmark';});
+    </script>
+</body>
+</html>

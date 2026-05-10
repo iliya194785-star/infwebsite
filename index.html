@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Митці Вічності</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Hero ── */
+        #hero {
+            min-height: 100vh;
+            padding-top: var(--offset);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%),
+                linear-gradient(180deg, rgba(13,13,15,0.3) 0%, rgba(13,13,15,0.7) 100%);
+        }
+        .hero-inner {
+            position: relative; z-index: 2;
+            text-align: center;
+            padding: 0 24px;
+            max-width: 860px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.9s ease 0.15s, transform 0.9s ease 0.15s;
+        }
+        .hero-inner.visible { opacity: 1; transform: translateY(0); }
+        .hero-eyebrow {
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .hero-eyebrow::before, .hero-eyebrow::after {
+            content: '';
+            width: 40px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold));
+        }
+        .hero-eyebrow::after { transform: scaleX(-1); }
+        .hero-h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(52px, 10vw, 110px);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            margin-bottom: 28px;
+        }
+        .hero-h1 em {
+            font-style: italic;
+            color: var(--gold);
+            display: block;
+        }
+        .hero-sub {
+            font-size: clamp(15px, 2vw, 18px);
+            color: var(--fog);
+            max-width: 480px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: var(--ink);
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 18px 44px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 28px rgba(201,168,76,0.3);
+        }
+        .hero-cta:hover {
+            background: var(--gold-lt);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(201,168,76,0.4);
+        }
+        .hero-scroll {
+            position: absolute; bottom: 36px; left: 50%;
+            transform: translateX(-50%);
+            color: rgba(201,168,76,0.5);
+            font-size: 20px;
+            animation: bob 2s ease infinite;
+        }
+        @keyframes bob {
+            0%,100% { transform: translateX(-50%) translateY(0); }
+            50%      { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ── About ── */
+        .about-band {
+            padding: 80px 24px;
+            text-align: center;
+            border-top: 1px solid rgba(201,168,76,0.08);
+            border-bottom: 1px solid rgba(201,168,76,0.08);
+        }
+        .about-band .label {
+            font-size: 10.5px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .about-band h2 {
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .about-band p {
+            font-size: 16px;
+            color: var(--fog);
+            max-width: 540px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ── Artists grid ── */
+        #artists {
+            padding: 100px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-head {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .section-head .label {
+            font-size: 10.5px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+        .section-head h2 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 600;
+        }
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+        }
+        .artist-card {
+            position: relative;
+            display: block;
+            border-radius: var(--radius);
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            aspect-ratio: 3/4;
+            background: var(--ink-3);
+            transition: transform 0.35s ease;
+            border: 1px solid rgba(201,168,76,0.08);
+        }
+        .artist-card:hover { transform: translateY(-10px); }
+        .artist-card img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s ease;
+            filter: grayscale(20%);
+        }
+        .artist-card:hover img { transform: scale(1.06); filter: grayscale(0%); }
+        .artist-card .ac-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(13,13,15,0.95) 0%, rgba(13,13,15,0.3) 50%, transparent 100%);
+        }
+        .artist-card .ac-info {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 28px 24px;
+        }
+        .ac-tag {
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ac-tag::before {
+            content: '';
+            width: 20px; height: 1px;
+            background: var(--gold);
+        }
+        .artist-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--paper);
+        }
+        .ac-arrow {
+            position: absolute; top: 24px; right: 24px;
+            width: 36px; height: 36px;
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold);
+            font-size: 13px;
+            transform: translateX(-4px);
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s, background 0.3s;
+        }
+        .artist-card:hover .ac-arrow {
+            opacity: 1;
+            transform: translateX(0);
+            background: rgba(201,168,76,0.15);
+        }
+
+        /* ── Quotes ── */
+        .quotes-band {
+            padding: 80px 24px;
+            background: var(--ink-2);
+            border-top: 1px solid rgba(201,168,76,0.08);
+            border-bottom: 1px solid rgba(201,168,76,0.08);
+        }
+        .quotes-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .q-card {
+            background: linear-gradient(135deg, rgba(201,168,76,0.05), transparent);
+            border: 1px solid rgba(201,168,76,0.15);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+        .q-card p:first-child {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 19px;
+            line-height: 1.6;
+            color: var(--paper);
+            margin-bottom: 20px;
+        }
+        .q-card p:last-child {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Банер -->
+    <div id="banner">
+        <span><i class="fas fa-flag" style="font-size:10px;"></i> <strong>З 24 лютого 2022</strong> — Україна бореться за свободу!</span>
+        <a href="https://savelife.in.ua/donate/" target="_blank" class="donate-badge">
+            <i class="fas fa-heart"></i> Підтримати ЗСУ
+        </a>
+    </div>
+
+    <!-- Навбар -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">МИТЦІ<em>.ВІЧНОСТІ</em></a>
+            <div class="nav-links">
+                <a href="classic.html">Бетховен</a>
+                <a href="sludes.html">Ван Гог</a>
+                <a href="poema.html">Шевченко</a>
+                <a href="architect.html">Мікеланджело</a>
+            </div>
+            <div class="lang-switcher">
+                <a href="index.html" class="active">УКР</a>
+                <span class="lang-sep">|</span>
+                <a href="index-en.html">ENG</a>
+            </div>
+            <button id="mobile-menu-btn" aria-label="Меню"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobile-menu">
+            <a href="classic.html">Бетховен</a>
+            <a href="sludes.html">Ван Гог</a>
+            <a href="poema.html">Шевченко</a>
+            <a href="architect.html">Мікеланджело</a>
+            <div class="lang-row">
+                <a href="index.html" class="active">УКР</a>
+                <a href="index-en.html">ENG</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-inner" id="hero-inner">
+            <div class="hero-eyebrow">Освітній проєкт</div>
+            <h1 class="hero-h1">
+                Мистецтво,
+                <em>що не вмирає</em>
+            </h1>
+            <p class="hero-sub">Історії геніїв, які перемагали біль, глухоту, кріпацтво та саму долю</p>
+            <a href="#artists" class="hero-cta">
+                Відкрити митців <i class="fas fa-arrow-down" style="font-size:11px;"></i>
+            </a>
+        </div>
+        <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+    <!-- Про проєкт -->
+    <div class="about-band fade-up">
+        <div class="label">Про проєкт</div>
+        <h2>Митці Вічності</h2>
+        <p>Освітній сайт про видатних особистостей, які змінили світ через мистецтво. Чотири генії, чотири долі — одне безсмертя.</p>
+    </div>
+
+    <!-- Митці -->
+    <section id="artists">
+        <div class="section-head fade-up">
+            <div class="label">Обрані постаті</div>
+            <h2>Легенди, що надихають</h2>
+        </div>
+        <div class="artists-grid">
+            <a href="classic.html" class="artist-card fade-up">
+                <img src="https://i.postimg.cc/yd4sgW0F/6389.jpg" alt="Бетховен" loading="lazy">
+                <div class="ac-overlay"></div>
+                <div class="ac-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="ac-info">
+                    <div class="ac-tag">Композитор</div>
+                    <h3>Людвіг ван Бетховен</h3>
+                </div>
+            </a>
+            <a href="sludes.html" class="artist-card fade-up">
+                <img src="https://i.postimg.cc/fTGwS2Hm/Vincent-van-Gogh-Self-Portrait-Google-Art-Project.jpg" alt="Ван Гог" loading="lazy">
+                <div class="ac-overlay"></div>
+                <div class="ac-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="ac-info">
+                    <div class="ac-tag">Художник</div>
+                    <h3>Вінсент ван Гог</h3>
+                </div>
+            </a>
+            <a href="poema.html" class="artist-card fade-up">
+                <img src="https://i.postimg.cc/m2Mkmfgg/Taras-Shevchenko-selfportrait-oil-1840-2.jpg" alt="Шевченко" loading="lazy">
+                <div class="ac-overlay"></div>
+                <div class="ac-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="ac-info">
+                    <div class="ac-tag">Поет · Художник</div>
+                    <h3>Тарас Шевченко</h3>
+                </div>
+            </a>
+            <a href="architect.html" class="artist-card fade-up">
+                <img src="https://i.postimg.cc/CKw4FsQZ/photo-2026-05-09-18-25-53.jpg" alt="Мікеланджело" loading="lazy">
+                <div class="ac-overlay"></div>
+                <div class="ac-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="ac-info">
+                    <div class="ac-tag">Скульптор · Архітектор</div>
+                    <h3>Мікеланджело</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Цитати -->
+    <div class="quotes-band">
+        <div class="quotes-inner">
+            <div class="section-head fade-up">
+                <div class="label">Їхніми словами</div>
+                <h2>Слова, що надихають</h2>
+            </div>
+            <div class="quotes-grid">
+                <div class="q-card fade-up">
+                    <p>"Я схоплю свою долю за горлянку!"</p>
+                    <p>— Людвіг ван Бетховен</p>
+                </div>
+                <div class="q-card fade-up">
+                    <p>"Борітеся — поборете! Вам Бог помагає!"</p>
+                    <p>— Тарас Шевченко</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://savelife.in.ua/donate/" target="_blank" class="donate-fab">
+        <i class="fas fa-heart"></i> Підтримати ЗСУ
+    </a>
+
+    <footer>
+        <p>&copy; 2026 <span>Митці Вічності</span> &nbsp;·&nbsp; Слава Україні! Героям Слава!</p>
+    </footer>
+
+    <script>
+        // Layout
+        function adjustLayout() {
+            const banner = document.getElementById('banner');
+            const navbar = document.getElementById('navbar');
+            if (!banner || !navbar) return;
+            const bh = banner.offsetHeight;
+            navbar.style.top = bh + 'px';
+            document.documentElement.style.setProperty('--banner-h', bh + 'px');
+        }
+
+        // Scroll анімації
+        function initFadeUp() {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustLayout();
+            initFadeUp();
+            requestAnimationFrame(() => {
+                const h = document.getElementById('hero-inner');
+                if (h) h.classList.add('visible');
+            });
+        });
+        window.addEventListener('resize', adjustLayout);
+
+        // Мобільне меню
+        const mb = document.getElementById('mobile-menu-btn');
+        const mm = document.getElementById('mobile-menu');
+        mb.addEventListener('click', () => {
+            const open = mm.style.display === 'flex';
+            mm.style.display = open ? 'none' : 'flex';
+            mb.querySelector('i').className = open ? 'fas fa-bars' : 'fas fa-xmark';
+        });
+    </script>
+</body>
+</html>
