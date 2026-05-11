@@ -1,12 +1,47 @@
-/* ====================== ШРИФТИ ====================== */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap');
+/* Шрифти підключені через <link> в кожному HTML файлі (не тут),
+   щоб браузер міг завантажити їх паралельно і не блокувати рендер */
+
+/* size-adjust для fallback шрифтів — системний шрифт займає майже
+   таке ж місце як кастомний, тому текст не стрибає при заміні */
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: local('Georgia');
+    size-adjust: 105%;
+    ascent-override: 90%;
+    descent-override: 20%;
+    line-gap-override: 0%;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Jost';
+    src: local('Arial');
+    size-adjust: 96%;
+    ascent-override: 95%;
+    descent-override: 22%;
+    font-display: swap;
+}
 
 /* ====================== VIEW TRANSITIONS ====================== */
 @view-transition { navigation: auto; }
-::view-transition-old(root) { animation: vt-out 0.22s ease forwards; }
-::view-transition-new(root) { animation: vt-in  0.28s ease forwards; }
-@keyframes vt-out { to   { opacity: 0; transform: translateY(-6px); } }
-@keyframes vt-in  { from { opacity: 0; transform: translateY(8px);  } }
+
+/* Тільки основний контент анімується — fade */
+::view-transition-old(root) {
+    animation: vt-fade-out 0.18s ease forwards;
+}
+::view-transition-new(root) {
+    animation: vt-fade-in 0.22s ease forwards;
+}
+@keyframes vt-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes vt-fade-in  { from { opacity: 0; } to { opacity: 1; } }
+
+/* Банер і навбар — стоять нерухомо, без жодної анімації */
+::view-transition-old(site-banner),
+::view-transition-new(site-banner),
+::view-transition-old(site-navbar),
+::view-transition-new(site-navbar) {
+    animation: none;
+    mix-blend-mode: normal;
+}
 
 /* ====================== ЗМІННІ ====================== */
 :root {
@@ -71,6 +106,7 @@ body::before {
     border-bottom: 1px solid rgba(201,168,76,0.5);
     z-index: 100;
     padding: 0 24px;
+    view-transition-name: site-banner; /* не мерехтить при переходах */
 }
 #banner strong { color: var(--gold-lt); }
 #banner a.donate-badge {
@@ -104,7 +140,7 @@ body::before {
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(201,168,76,0.15);
     z-index: 90;
-    transition: top 0.2s ease;
+    view-transition-name: site-navbar; /* не мерехтить при переходах */
 }
 .nav-inner {
     max-width: 1200px;
